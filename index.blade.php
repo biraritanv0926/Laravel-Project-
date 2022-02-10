@@ -10,3 +10,4 @@
 no post found
 @endforelse
 @endsection
+
