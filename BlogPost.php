@@ -10,6 +10,6 @@ class BlogPost extends Model
     protected $fillable = ['title','content'];
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Models\Comment');
     }
 }
