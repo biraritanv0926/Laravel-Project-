@@ -9,6 +9,6 @@ class Comment extends Model
 {
     public function blogPost()
     {
-        return $this->belongsTo('App\BolgPost');
+        return $this->belongsTo('App\BlogPost');
     }
 }
