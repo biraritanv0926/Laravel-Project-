@@ -30,5 +30,3 @@
         <p>No blog posts yet!</p>
     @endforelse
 @endsection('content')
-
-
