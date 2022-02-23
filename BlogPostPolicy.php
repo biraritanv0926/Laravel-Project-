@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\BlogPost;
+use App\Models\User;
+use App\Models\BlogPost;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BlogPostPolicy
