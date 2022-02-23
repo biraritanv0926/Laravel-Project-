@@ -1,13 +1,49 @@
 @extends('layout')
 
 @section('content')
-    <form method="POST" 
-          action="{{ route('posts.update', ['post' => $post->id]) }}">
+    <form method="POST" enctype="multipart/form-data"
+        action="{{ route('users.update', ['user' => $user->id]) }}"
+        class="form-horizontal">
+
         @csrf
         @method('PUT')
 
-        @include('posts._form')
+        <div class="row">
+            <div class="col-4">
+                <img src="{{ $user->image ? $user->image->url() : '' }}" 
+                class="img-thumbnail avatar" />
 
-        <button type="submit" class="btn btn-primary btn-block">Update!</button>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h6>{{ __('Upload a different photo') }}</h6>
+                        <input class="form-control-file" type="file" name="avatar" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label>{{ __('Name:') }}</label>
+                    <input class="form-control" value="" type="text" name="name" />
+                </div>
+
+                <div class="form-group">
+                    <label>{{ __('Language:') }}</label>
+                    <select class="form-control" name="locale">
+                        @foreach(App\User::LOCALES as $locale => $label)
+                            <option value="{{ $locale }}" {{ $user->locale !== $locale ?: 'selected' }}>
+                                {{ $label }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                @errors @enderrors
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="{{ __('Save changes') }}" />
+                </div>
+            </div>
+        </div>
+
     </form>
 @endsection

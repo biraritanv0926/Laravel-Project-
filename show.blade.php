@@ -1,25 +1,21 @@
 @extends('layout')
 
 @section('content')
-    <h1>{{ $post->title }}</h1>
-    <p>{{ $post->content }}</p>
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ $user->image ? $user->image->url() : '' }}"
+                class="img-thumbnail avatar" />
+        </div>
+        <div class="col-8">
+            <h3>{{ $user->name }}</h3>
 
-    <p>Added {{ $post->created_at->diffForHumans() }}</p>
+            <p>Currently viewed by {{ $counter }} other users</p>
 
-    @if ((new Carbon\Carbon())->diffInMinutes($post->created_at) < 5 )
-        <strong>New!</strong>
-    @endif
+            @commentForm(['route' => route('users.comments.store', ['user' => $user->id])])
+            @endcommentForm
 
-    <h4>Comments</h4>
-
-    @forelse($post->comments as $comment)
-        <p>
-            {{ $comment->content }}
-        </p>
-        <p class="text-muted">
-            added {{ $comment->created_at->diffForHumans() }}
-        </p>
-    @empty
-        <p>No comments yet!</p>
-    @endforelse
-@endsection('content')
+            @commentList(['comments' => $user->commentsOn])
+            @endcommentList
+        </div>
+    </div>
+@endsection
