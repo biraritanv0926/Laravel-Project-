@@ -9,12 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-
-
 */
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@home')
   ->name('home')
@@ -32,7 +27,7 @@ Route::resource('users.comments', 'UserCommentController')->only(['store']);
 Route::resource('users', 'UserController')->only(['show', 'edit', 'update']);
 
 Route::get('mailable', function () {
-    $comment = App\Models\Comment::find(1);
+    $comment = App\Comment::find(1);
     return new App\Mail\CommentPostedMarkdown($comment);
 });
 
