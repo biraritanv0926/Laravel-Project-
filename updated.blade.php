@@ -7,4 +7,5 @@
             {{ __('by') }} {{ $name }}
         @endif
     @endif
+    
 </p>
