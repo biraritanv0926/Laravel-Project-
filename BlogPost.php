@@ -32,6 +32,7 @@ class BlogPost extends Model
     }
 
     public function image()
+        
     {
         return $this->morphOne('App\Image', 'imageable');
     }
